@@ -110,4 +110,79 @@ Git의 큰 장점 중 하나는 **실수를 쉽게 되돌릴 수 있다는 점**
 이제 `git init`, `git add`, `git commit`까지 Git의 가장 기본적인 워크플로우를 배워봤습니다.  
 여기에 `git log`, `git restore`까지 익히면 기본적인 버전 관리 흐름을 충분히 이해할 수 있습니다.  
 
-👉 다음 단계로는 원격 저장소(`git remote`, `git push`)까지 학습해보면 협업에도 활용할 수 있습니다!
+---
+
+# Git 원격 저장소와 협업하기: git push, pull
+
+앞에서는 로컬 저장소에서 `git init`, `git add`, `git commit`으로 버전을 관리하는 방법을 살펴봤습니다.  
+이번에는 원격 저장소와 협업할 때 꼭 필요한 명령어인 **git push**와 **git pull**을 정리해보겠습니다.  
+
+---
+
+## 1. 원격 저장소 등록하기: `git remote add`
+
+```bash
+git remote add origin https://github.com/username/repository.git
+git remote -v
+```
+
+- `origin` : 원격 저장소의 별칭(일반적으로 이렇게 이름을 붙임)  
+- `-v` 옵션 : 원격 저장소 주소 확인  
+
+---
+
+## 2. 원격 저장소에 올리기: `git push`
+
+```bash
+git push origin main
+```
+
+- `origin` : 원격 저장소 이름  
+- `main` : 현재 브랜치 이름  
+
+처음 push할 때는 `-u` 옵션을 주어 업스트림 브랜치를 설정하는 것이 좋습니다.  
+
+```bash
+git push -u origin main
+```
+
+이후에는 단순히 `git push`만 입력해도 됩니다.  
+
+---
+
+## 3. 원격 저장소에서 가져오기: `git pull`
+
+```bash
+git pull origin main
+```
+
+- 원격 저장소의 최신 내용을 로컬 저장소로 가져와 병합(merge)합니다.  
+- 사실상 `git fetch` + `git merge` 과정을 자동으로 수행합니다.  
+
+---
+
+## 4. 기본 협업 워크플로우
+
+1. 원격 저장소 최신 코드 가져오기  
+   ```bash
+   git pull origin main
+   ```
+2. 로컬에서 작업 후 커밋하기  
+   ```bash
+   git add .
+   git commit -m "작업 내용 설명"
+   ```
+3. 작업 내용을 원격 저장소에 푸시하기  
+   ```bash
+   git push origin main
+   ```
+
+---
+
+## 마무리
+
+- `git push` → 로컬 변경 사항을 원격 저장소에 업로드  
+- `git pull` → 원격 저장소의 변경 사항을 로컬로 가져오기  
+
+👉 이 두 명령어만 잘 이해해도 협업 환경에서 Git을 원활하게 활용할 수 있습니다.
+
